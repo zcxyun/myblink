@@ -1,21 +1,25 @@
-<view>
-  <view class="comment-container">
-    <view class="comment">
+<view class="container">
+  <view class="comment-container" hidden="{{posting}}">
+    <view class="comment" bind:tap="onPost">
       <text class="tip">输入短评</text>
     </view>
     <z-like class="like" like-status="{{likeStatus}}" like-count="{{favNums}}" read-only="{{readOnly}}" bind:like="onLike" />
   </view>
-  <view class="post-container">
+  <view class="post-container" hidden="{{!posting}}">
     <view class="header">
       <text class="tip">{{postTip}}</text>
-      <text class="cancel">取消</text>
+      <text class="cancel" bind:tap="onPostCancel">取消</text>
     </view>
     <view class="tags">
-      <block wx:for="{{comments}}" wx:key="content">
-        <z-tag comment="{{item.content}}">
-          <text slot="nums" class="tag-nums">{{'+' + item.nums}}</text>
-        </z-tag>
-      </block>
+      <z-tags comments="{{comments}}" />
+    </view>
+    <view class="post-input">
+      <input
+        placeholder="请在此输入短评"
+        placeholder-class="placeholder"
+        focus="{{true}}"
+      />
     </view>
   </view>
 </view>
+<z-mask wx:if="{{posting}}" bind:tap="onMask" />

@@ -1,1 +1,31 @@
-/* components/tags/tags.wxss */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tags > z-tag {
+  margin-right: 15rpx;
+  margin-bottom: 10rpx;
+}
+
+/* .tags > z-tag:nth-child(1) > view {
+  background: #fffbdd;
+}
+
+.tags > z-tag:nth-child(2) > view {
+  background: #eefbff;
+} */
+
+.tag1 {
+  background: #fffbdd !important;
+}
+
+.tag2 {
+  background: #eefbff !important;
+}
+
+.tag-nums {
+  margin-left: 10rpx;
+  color: #aaa;
+  font-size: 22rpx;
+}

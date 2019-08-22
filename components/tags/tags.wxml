@@ -1,1 +1,8 @@
-<view></view>
+<wxs src="../../utils/filter.wxs" module="utils"></wxs>
+<view class="tags">
+  <block wx:for="{{comments}}" wx:key="content">
+    <z-tag comment="{{item.content}}" tag-class="{{utils.highlight(index)}}">
+      <text slot="nums" class="tag-nums">{{'+' + item.nums}}</text>
+    </z-tag>
+  </block>
+</view>

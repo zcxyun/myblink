@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "z-like": "/components/like/like",
-    "z-tag": "/components/tag/tag"
+    "z-tags": "/components/tags/tags",
+    "z-mask": "/components/mask/mask"
   }
 }

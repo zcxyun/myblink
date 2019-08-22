@@ -1,3 +1,9 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  z-index: 999
+}
 .comment-container {
   height: 80rpx;
   display: flex;
@@ -24,4 +30,55 @@
 
 .like {
   margin-right: 40rpx;
+}
+
+.post-container {
+  background: #fff;
+}
+
+.header {
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #999;
+}
+
+.tip {
+  font-size: 28rpx;
+  color: #999;
+  margin-left: 20rpx;
+}
+
+.cancel {
+  font-size: 32rpx;
+  color: #666;
+  margin-right: 20rpx;
+}
+
+.tags {
+  padding: 20rpx;
+}
+
+.post-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30rpx 30rpx 20rpx;
+}
+
+.post-input > input {
+  flex: 1;
+  height: 50rpx;
+  border-radius: 50rpx;
+  border: 1px solid #999;
+  font-size: 28rpx;
+  color: #999;
+  padding: 0 25rpx;
+}
+
+.placeholder {
+  font-size: 28rpx;
+  color: #aaa;
+  margin-left: 20rpx;
 }

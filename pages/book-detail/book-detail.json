@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "z-tag": "/components/tag/tag",
+    "z-tags": "/components/tags/tags",
     "z-shortcomment": "/components/short-comment/short-comment"
   }
 }

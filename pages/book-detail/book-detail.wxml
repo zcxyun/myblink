@@ -8,13 +8,7 @@
 
   <view class="sub-container">
     <text class="headline">短评</text>
-    <view class="tags">
-      <block wx:for="{{comments}}" wx:key="content">
-        <z-tag comment="{{item.content}}" tag-class="{{utils.highlight(index)}}">
-          <text slot="nums" class="tag-nums">{{'+' + item.nums}}</text>
-        </z-tag>
-      </block>
-    </view>
+    <z-tags comments="{{comments}}" />
   </view>
 
   <view class="sub-container">
@@ -43,11 +37,11 @@
   </view>
 
   <z-shortcomment
-    class="short-comment"
     like-status="{{likeStatus}}"
     fav-nums="{{favNums}}"
     read-only="{{readOnly}}"
     comments="{{comments}}"
     bind:like="onLike"
   />
+
 </view>

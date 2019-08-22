@@ -1,10 +1,10 @@
-// components/tags/tags.js
+// components/mask/mask.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    comments: Array
+
   },
 
   /**
