@@ -9,7 +9,16 @@ var limit = function(arr, length) {
   return arr.slice(0, length)
 }
 
+var highlight = function(index) {
+  if (index == 0) {
+    return 'tag1'
+  } else if (index == 1) {
+    return 'tag2'
+  }
+  return ''
+}
 module.exports = {
   format: format,
-  limit: limit
+  limit: limit,
+  highlight: highlight
 }

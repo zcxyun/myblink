@@ -1,5 +1,7 @@
 import Book from '../../models/book.js'
+import Like from '../../models/like.js'
 const bookModel = new Book()
+const likeModel = new Like()
 Page({
 
   /**
@@ -7,7 +9,10 @@ Page({
    */
   data: {
     book: null,
-    comments: null
+    comments: null,
+    likeStatus: false,
+    favNums: 0,
+    readOnly: true
   },
 
   /**
@@ -18,14 +23,27 @@ Page({
   },
 
   async initBookData(bid) {
-    const book = await bookModel.getBookById(bid)
-    const comments = await bookModel.getComments(bid)
+    const bookPromise = bookModel.getBookById(bid)
+    const commentsPromise = bookModel.getComments(bid)
+    const bookLikeDataPromise = bookModel.getFavor(bid)
+    const [book, comments, bookLikeData] = await Promise.all([
+      bookPromise, commentsPromise, bookLikeDataPromise
+    ])
     this.setData({
+      readOnly: false,
       book,
-      comments: comments.comments
+      comments: comments.comments,
+      likeStatus: bookLikeData.like_status,
+      favNums: bookLikeData.fav_nums
     })
   },
 
+  onLike(e) {
+    if (!this.data.readOnly) {
+      const isLike = e.detail.isLike
+      likeModel.like(this.data.book.id, 400, isLike)
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

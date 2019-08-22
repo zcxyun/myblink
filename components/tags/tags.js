@@ -1,15 +1,10 @@
-// components/tag/tag.js
+// components/tags/tags.js
 Component({
-  options: {
-    multipleSlots: true
-  },
-
-  externalClasses: ['tag-class'],
   /**
    * 组件的属性列表
    */
   properties: {
-    comment: String
+
   },
 
   /**
