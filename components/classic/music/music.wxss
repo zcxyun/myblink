@@ -1,0 +1,31 @@
+@import "../common.wxss";
+
+.img {
+  width: 500rpx;
+  height: 500rpx;
+}
+
+.play-img {
+  width: 150rpx;
+  height: 150rpx;
+  position: absolute;
+  top: 256rpx;
+}
+
+.rotation {
+  -webkit-transform: rotate(360deg);
+  animation: rotation 12s linear infinite;
+  -moz-animation: rotation 12s linear infinite;
+  -webkit-animation: rotation 12s linear infinite;
+  -o-animation: rotation 12s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}

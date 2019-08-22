@@ -1,0 +1,10 @@
+.books-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 0 50rpx;
+}
+
+.book {
+  margin-top: 50rpx;
+}

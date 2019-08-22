@@ -1,0 +1,19 @@
+.container {
+  margin-top: 100rpx;
+  display: flex;
+  justify-content: center;
+}
+.navi-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7f7f7;
+  width: 550rpx;
+  border-radius: 5rpx;
+}
+
+.navi-container image {
+  width: 70rpx;
+  height: 70rpx;
+}
+

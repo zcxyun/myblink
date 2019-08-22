@@ -1,0 +1,27 @@
+.comment-container {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #999;
+  background: #fff;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 50rpx;
+  border: 1px solid #999;
+  border-radius: 50rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+.tip {
+  font-size: 20rpx;
+  margin-left: 20rpx;
+}
+
+.like {
+  margin-right: 40rpx;
+}

@@ -1,0 +1,21 @@
+/* pages/book/book.wxss */
+.searchbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.books-container {
+  margin-top: 130rpx;
+}
+
+.title-img-box {
+  display: flex;
+  justify-content: center;
+}
+
+.title-img {
+  width: 107rpx;
+  height: 34rpx;
+}

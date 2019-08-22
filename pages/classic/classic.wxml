@@ -1,0 +1,27 @@
+<view class="classic-container">
+  <view class="header">
+    <z-episode index="{{classic.index}}" pubdate="{{classic.pubdate}}" />
+    <z-like bind:like="onLike" like-status="{{likeStatus}}" like-count="{{likeCount}}"/>
+  </view>
+  <z-movie 
+    hidden="{{classic.type != 100}}" 
+    img="{{classic.image}}" 
+    content="{{classic.content}}"/>
+  <z-music 
+    wx:if="{{classic.type == 200}}" 
+    img="{{classic.image}}"
+    url="{{classic.url}}"
+    title="{{classic.title}}"
+    content="{{classic.content}}"/>
+  <z-essay 
+    hidden="{{classic.type != 300}}" 
+    img="{{classic.image}}" 
+    content="{{classic.content}}"/>
+
+  <z-navi 
+    bind:next="onNext" 
+    bind:prev="onPrev" 
+    title="{{classic.title}}" 
+    has-left="{{hasLeft}}" 
+    has-right="{{hasRight}}"/>
+</view>

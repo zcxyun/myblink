@@ -1,0 +1,12 @@
+<view class="comment-container">
+  <view class="comment">
+    <text class="tip">输入短评</text>
+  </view>
+  <z-like
+    class="like"
+    like-status="{{likeStatus}}"
+    like-count="{{favNums}}"
+    read-only="{{likeReadOnly}}"
+    bind:like="onLike"
+  />
+</view>

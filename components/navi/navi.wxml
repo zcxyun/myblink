@@ -1,0 +1,7 @@
+<view class="container">
+  <view class="navi-container">
+    <image src="{{hasLeft?leftNavi:disLeftNavi}}" bindtap="onLeft"></image>
+    <text>{{title}}</text>
+    <image src="{{hasRight?rightNavi:disRightNavi}}" bindtap="onRight"></image>
+  </view>
+</view>

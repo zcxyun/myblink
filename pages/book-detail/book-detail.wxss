@@ -1,0 +1,99 @@
+.book-detail-container {
+  background: #f5f5f5;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 0;
+  background: #fff;
+  margin-bottom: 30rpx;
+}
+
+.header > image {
+  width: 240rpx;
+  height: 360rpx;
+}
+
+.title {
+  font-size: 40rpx;
+  margin-top: 10rpx;
+  font-weight: 600;
+  color: #2f2f2f;
+}
+
+.author {
+  color: #999;
+  font-size: 28rpx;
+}
+
+.sub-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 30rpx;
+  background: #fff;
+  margin-bottom: 30rpx;
+}
+
+.headline {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 10rpx;
+}
+
+.summary {
+  text-indent: 58rpx;
+  font-weight: 500;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tags > z-tag {
+  margin-right: 15rpx;
+  margin-bottom: 10rpx;
+}
+
+.tags > z-tag:nth-child(1) > view {
+  background: #fffbdd;
+}
+
+.tags > z-tag:nth-child(2) > view {
+  background: #eefbff;
+}
+
+.tag-nums {
+  margin-left: 10rpx;
+  color: #aaa;
+  font-size: 22rpx;
+}
+
+.book-info {
+  display: flex;
+  width: 100%;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  font-size: 28rpx;
+}
+
+.desc {
+  color: #999;
+  margin-right: 30rpx;
+}
+
+.short-comment {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+}

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "z-like": "/components/like/like"
+  }
+}

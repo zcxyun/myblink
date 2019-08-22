@@ -1,0 +1,46 @@
+<wxs src="../../utils/filter.wxs" module="utils"></wxs>
+<view class="book-detail-container">
+  <view class="header">
+    <image src="{{book.image}}"></image>
+    <text class="title">{{book.title}}</text>
+    <text class="author">{{book.author}}</text>
+  </view>
+
+  <view class="sub-container">
+    <text class="headline">短评</text>
+    <view class="tags">
+      <block wx:for="{{comments}}" wx:key="content">
+        <z-tag comment="{{item.content}}">
+          <text slot="nums" class="tag-nums">{{'+' + item.nums}}</text>
+        </z-tag>
+      </block>
+    </view>
+  </view>
+
+  <view class="sub-container">
+    <text class="headline">内容简介</text>
+    <text class="summary" decode="{{true}}">{{utils.format(book.summary)}}</text>
+  </view>
+
+  <view class="sub-container">
+    <text class="headline">书本信息</text>
+    <view class="book-info">
+      <view class="vertical desc">
+        <text>出版社</text>
+        <text>出版年</text>
+        <text>页数</text>
+        <text>定价</text>
+        <text>装帧</text>
+      </view>
+      <view class="vertical">
+        <text>{{book.publisher}}</text>
+        <text>{{book.pubdate}}</text>
+        <text>{{book.pages}}</text>
+        <text>{{book.price}}</text>
+        <text>{{book.binding}}</text>
+      </view>
+    </view>
+  </view>
+
+  <z-shortcomment class="short-comment" book-id="{{book.id}}" />
+</view>

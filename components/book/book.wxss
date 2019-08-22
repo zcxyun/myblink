@@ -1,0 +1,48 @@
+.book-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 2px 2px 3px #e3e3e3;
+  width: 240rpx;
+  height: 360rpx;
+  border-radius: 5rpx;
+  box-sizing: border-box;
+}
+
+.book-container > image {
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+}
+
+.desc {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 216rpx;
+  height: 150rpx;
+  background: #fff;
+  flex-direction: column;
+  padding: 5rpx 10rpx 8rpx 15rpx;
+}
+
+.title {
+  margin-top: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.author {
+  font-size: 20rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.like-nums {
+  font-size: 20rpx;
+  align-self: flex-end;
+}

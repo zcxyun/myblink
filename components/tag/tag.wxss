@@ -1,0 +1,10 @@
+.tag-container {
+  background: #f5f5f5;
+  padding: 4rpx 12rpx;
+  color: #666;
+  font-size: 28rpx;
+  display: inline-block;
+  /* justify-content: center; */
+  /* align-items: center; */
+  border-radius: 2rpx;
+}

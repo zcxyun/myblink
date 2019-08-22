@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "z-book": "/components/book/book"
+  }
+}

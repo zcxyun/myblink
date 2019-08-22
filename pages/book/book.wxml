@@ -1,0 +1,9 @@
+<view>
+  <z-searchbar class="searchbar" />
+  <view class="books-container">
+    <view class="title-img-box">
+      <image class="title-img" src="/images/book/quality.png" />
+    </view>
+    <z-books class="books" books="{{books}}" />
+  </view>
+</view>

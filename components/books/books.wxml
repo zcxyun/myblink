@@ -1,0 +1,11 @@
+<view class="books-container">
+  <block wx:for="{{books}}" wx:key="id">
+    <z-book class="book"
+      imgUrl="{{item.image}}"
+      title="{{item.title}}"
+      author="{{item.author}}"
+      fav-nums="{{item.fav_nums}}" 
+      bid="{{item.id}}"
+    />
+  </block>
+</view>
