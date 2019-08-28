@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "z-books": "/components/books/books",
+    "z-tags": "/components/tags/tags",
+    "z-loading": "/components/loading/loading"
+  }
+}

@@ -6,7 +6,9 @@ var format = function(text) {
 }
 
 var limit = function(arr, length) {
-  return arr.slice(0, length)
+  if (arr) {
+    return arr.slice(0, length)
+  }
 }
 
 var highlight = function(index) {

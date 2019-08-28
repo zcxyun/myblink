@@ -21,7 +21,7 @@
 		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.0",
+	"libVersion": "2.8.1",
 	"appid": "wxfdcf36f2bf5d2af2",
 	"projectname": "myblink",
 	"debugOptions": {

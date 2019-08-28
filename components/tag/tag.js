@@ -23,6 +23,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onTag() {
+      this.triggerEvent('click', {text: this.properties.comment})
+    }
   }
 })

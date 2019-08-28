@@ -44,6 +44,32 @@ Page({
       likeModel.like(this.data.book.id, 400, isLike)
     }
   },
+
+  onTag(e) {
+    this.emit(e.detail.text)
+  },
+
+  onInputConfirm(e) {
+    this.emit(e.detail.value)
+  },
+
+  emit(text) {
+    bookModel.addComment(this.data.book.id, text)
+    this.showEmitSucc()
+    this.updateComments(text)
+  },
+  showEmitSucc() {
+    wx.showToast({'title': '+ 1', 'icon': 'none'})
+  },
+  updateComments(text) {
+    this.data.comments.unshift({
+      content: text,
+      nums: 1
+    })
+    this.setData({
+      comments: this.data.comments
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

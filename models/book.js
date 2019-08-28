@@ -21,4 +21,19 @@ export default class Book extends Http {
       url: `book/${id}/favor`
     })
   }
+  addComment(book_id, content) {
+    return this.request({
+      url: 'book/add/short_comment',
+      method: 'POST',
+      data: {
+        book_id,
+        content
+      }
+    })
+  }
+  search(q, start=0, count=20, summary=1) {
+    return this.request({
+      url: `book/search?start=${start}&count=${count}&summary=${summary}&q=${q}`
+    })
+  }
 }

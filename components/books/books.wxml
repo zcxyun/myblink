@@ -4,7 +4,7 @@
       imgUrl="{{item.image}}"
       title="{{item.title}}"
       author="{{item.author}}"
-      fav-nums="{{item.fav_nums}}" 
+      fav-nums="{{item.fav_nums}}"
       bid="{{item.id}}"
     />
   </block>

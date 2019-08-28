@@ -1,9 +1,10 @@
 <view>
-  <z-searchbar class="searchbar" />
-  <view class="books-container">
+  <z-searchbar class="searchbar" wx:if="{{!searching}}" bind:tap="onSearch"/>
+  <view class="books-container" wx:if="{{!searching}}">
     <view class="title-img-box">
       <image class="title-img" src="/images/book/quality.png" />
     </view>
     <z-books class="books" books="{{books}}" />
   </view>
+  <z-book-search wx:if="{{searching}}" bind:cancel="onCancel" more="{{more}}" />
 </view>

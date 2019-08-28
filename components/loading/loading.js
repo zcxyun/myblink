@@ -1,10 +1,9 @@
-// components/tags/tags.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    comments: Array
+
   },
 
   /**
@@ -18,8 +17,6 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onTag(e) {
-      this.triggerEvent('click', e.detail)
-    }
+
   }
 })

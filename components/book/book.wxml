@@ -3,6 +3,6 @@
   <view class="desc">
     <text class="title">{{title}}</text>
     <text class="author">{{author}}</text>
-    <text class="like-nums">{{favNums}}</text>
+    <text class="like-nums" wx:if="{{favNums>0}}">{{favNums}}</text>
   </view>
 </view>

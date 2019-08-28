@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "z-searchbar": "/components/search-bar/search-bar",
-    "z-books": "/components/books/books"
+    "z-books": "/components/books/books",
+    "z-book-search": "/components/book-search/book-search"
   }
 }

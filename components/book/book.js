@@ -8,7 +8,7 @@ Component({
     title: String,
     author: String,
     favNums: Number,
-    bid: Number
+    bid: Number,
   },
 
   /**

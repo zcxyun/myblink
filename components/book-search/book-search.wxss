@@ -1,0 +1,92 @@
+.search-bar {
+  border-top: 1px solid #f5f5f5;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 750rpx;
+  height: 100rpx;
+  background: #fff;
+  box-shadow: 0 0 3px 0 #e3e3e3;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+
+.search {
+  background: #f5f5f5;
+  border-radius: 50rpx;
+  flex: 1;
+  height: 68rpx;
+  color: #999;
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+}
+
+.search > input {
+  flex: 1;
+}
+
+.search > image {
+  width: 28rpx;
+  height: 28rpx;
+  margin: 0 20rpx;
+}
+
+.search > text {
+  font-size: 32rpx;
+  margin-left: 20rpx;
+}
+
+.cancel {
+  font-size: 32rpx;
+  padding: 0 20rpx;
+}
+
+.keyword-container {
+  padding: 50rpx 25rpx;
+  margin-top: 100rpx;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.vertical-line {
+  border-left: 3px solid #000;
+  width: 0;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+
+.title {
+  font-size: 30rpx;
+}
+
+.tags-box > z-tags > view {
+  margin: 30rpx 20rpx;
+}
+
+.search-result {
+  margin-top: 100rpx;
+}
+
+.loading-search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.loading-more {
+  display: flex;
+  justify-content: center;
+}
+
+.empty-tip {
+  position: absolute;
+  top: 50%;
+  width: 750rpx;
+  text-align: center;
+}

@@ -8,7 +8,7 @@
 
   <view class="sub-container">
     <text class="headline">短评</text>
-    <z-tags comments="{{comments}}" />
+    <z-tags comments="{{utils.limit(comments, 10)}}" />
   </view>
 
   <view class="sub-container">
@@ -42,6 +42,8 @@
     read-only="{{readOnly}}"
     comments="{{comments}}"
     bind:like="onLike"
+    bind:click-tag="onTag"
+    bind:input-confirm="onInputConfirm"
   />
 
 </view>

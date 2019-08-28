@@ -1,3 +1,4 @@
+<wxs src="../../utils/filter.wxs" module="utils"></wxs>
 <view class="container">
   <view class="comment-container" hidden="{{posting}}">
     <view class="comment" bind:tap="onPost">
@@ -11,13 +12,14 @@
       <text class="cancel" bind:tap="onPostCancel">取消</text>
     </view>
     <view class="tags">
-      <z-tags comments="{{comments}}" />
+      <z-tags comments="{{utils.limit(comments, 3)}}" bind:click="onTag" />
     </view>
     <view class="post-input">
       <input
         placeholder="请在此输入短评"
         placeholder-class="placeholder"
-        focus="{{true}}"
+        auto-focus="{{true}}"
+        bind:confirm="onConfirm"
       />
     </view>
   </view>

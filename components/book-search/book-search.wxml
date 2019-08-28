@@ -1,0 +1,44 @@
+<view class="search-container">
+  <view class="search-bar">
+    <view class="search">
+      <image src="images/search.png" />
+      <input
+        placeholder="书籍名"
+        value="{{searchKeys}}"
+        bind:confirm="onConfirm"
+        focus="{{focus}}"
+        bind:input="onInput"
+      />
+      <image src="images/cancel.png" bind:tap="onClear" />
+    </view>
+    <text class="cancel" bind:tap="onCancel">取消</text>
+  </view>
+
+  <view class="keyword-container" wx:if="{{!searching}}">
+    <view class="tags-box">
+      <view class="header">
+        <view class="vertical-line"></view>
+        <text class="title">历史关键字</text>
+      </view>
+      <z-tags comments="{{historyKeys}}" bind:click="onConfirm" />
+    </view>
+
+    <view class="tags-box">
+      <view class="header">
+        <view class="vertical-line"></view>
+        <text class="title">热门关键字</text>
+      </view>
+      <z-tags comments="{{hotKeys}}" bind:click="onConfirm" />
+    </view>
+  </view>
+
+  <view class="search-result" wx:if="{{searching}}">
+    <z-books books="{{books}}"/>
+    <view class="loading-more">
+      <z-loading wx:if="{{loadingMore}}" />
+    </view>
+  </view>
+
+  <z-loading class="loading-search" wx:if="{{loadingSearch}}" />
+  <view class="empty-tip" wx:if="{{noResult}}">暂无相关书籍~~</view>
+</view>

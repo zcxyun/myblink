@@ -8,8 +8,6 @@ Component({
   },
 
   data: {
-    likeStatus: false,
-    favNums: 0,
     postTip: '',
     posting: false
   },
@@ -46,6 +44,13 @@ Component({
       })
     },
     onMask() {
+      this.showPostPanel(false)
+    },
+    onTag(e) {
+      this.triggerEvent('click-tag', e.detail)
+    },
+    onConfirm(e) {
+      this.triggerEvent('input-confirm', e.detail)
       this.showPostPanel(false)
     }
   }
