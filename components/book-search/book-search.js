@@ -1,8 +1,10 @@
 import Book from '../../models/book.js'
 import Keyword from '../../models/keyword.js'
+import paginateBeh from '../behaviors/paginate.js'
 const bookModel = new Book()
 const keywordModel = new Keyword()
 Component({
+  behaviors: [paginateBeh],
   /**
    * 组件的属性列表
    */
@@ -16,15 +18,10 @@ Component({
   data: {
     hotKeys: [],
     historyKeys: [],
-    books: [],
     searching: false,
-    noResult: false,
     searchKeys: '',
     focus: true,
     loadingSearch: false,
-    loadingMore: false,
-    total: 0,
-    locked: false
   },
 
   observers: {
@@ -32,20 +29,19 @@ Component({
       if(!this.data.searchKeys) {
         return
       }
-      if (this.data.locked) {
+      if (this._isLocked()) {
         return
       }
       if (this._hasMore()) {
         this._lock(true)
-        this._showLoadingMore(true)
         const books = await bookModel.search(
           this.data.searchKeys, this._getCurrentStart()
-        ).catch(
-          this._lock(false)
-        )
+        ).catch(e => this._lock(false))
+
         this._lock(false)
-        this._showLoadingMore(false)
-        this._setBooksData(books.books)
+        this._setMoreData(books.books)
+      } else {
+        this.noMoreData()
       }
     }
   },
@@ -65,15 +61,18 @@ Component({
    */
   methods: {
     onCancel() {
+      this._initPaginate()
       this.triggerEvent('cancel')
     },
     onClear() {
+      this._initPaginate()
       this._searching(false)
-      this._showNoResult(false)
+      this._showLoadingSearch(false)
       this._setInputValue('')
       this._focusInput()
     },
     async onConfirm(e) {
+      this._initPaginate()
       this._showLoadingSearch(true)
       this._searching(true)
       const text = e.detail.value || e.detail.text
@@ -82,24 +81,14 @@ Component({
       const books = await bookModel.search(text)
       this._setTotal(books.total)
       this._showLoadingSearch(false)
-      this._setBooksData(books.books)
+      this._setMoreData(books.books)
     },
     onInput(e) {
       if (e.detail.value.length == 0) {
         this._searching(false)
-        this._showNoResult(false)
+        this._showLoadingSearch(false)
+        this._initPaginate()
       }
-    },
-    _hasMore() {
-      return this._getCurrentStart() < this.data.total
-    },
-    _getCurrentStart() {
-      return this.data.books.length
-    },
-    _setTotal(total) {
-      this.setData({
-        total
-      })
     },
     _addToHistory(text) {
       this.setData({
@@ -108,8 +97,7 @@ Component({
     },
     _searching(searching) {
       this.setData({
-        searching,
-        books: searching ? [] : this.data.books
+        searching
       })
     },
     _showLoadingSearch(loadingSearch) {
@@ -117,20 +105,9 @@ Component({
         loadingSearch
       })
     },
-    _showLoadingMore(loadingMore) {
-      this.setData({
-        loadingMore
-      })
-    },
     _setInputValue(searchKeys) {
       this.setData({
         searchKeys
-      })
-    },
-    _setBooksData(books) {
-      this.setData({
-        books: this.data.books.concat(books),
-        noResult: !books.length
       })
     },
     _focusInput() {
@@ -138,15 +115,5 @@ Component({
         focus: true
       })
     },
-    _showNoResult(noResult) {
-      this.setData({
-        noResult
-      })
-    },
-    _lock(locked) {
-      this.setData({
-        locked
-      })
-    }
   }
 })
