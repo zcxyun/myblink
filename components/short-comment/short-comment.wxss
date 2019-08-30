@@ -32,6 +32,13 @@
   margin-right: 40rpx;
 }
 
+.share-button {
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 20rpx;
+  margin-top: 30rpx;
+}
+
 .post-container {
   background: #fff;
 }

@@ -1,27 +1,32 @@
 <view class="classic-container">
   <view class="header">
     <z-episode index="{{classic.index}}" pubdate="{{classic.pubdate}}" />
-    <z-like bind:like="onLike" like-status="{{likeStatus}}" like-count="{{likeCount}}"/>
+    <view class="header-buttons">
+      <z-like bind:like="onLike" like-status="{{likeStatus}}" like-count="{{likeCount}}"/>
+      <z-image-button open-type="share">
+        <image src="../../images/icon/share.png" slot="img" class="share-button" />
+      </z-image-button>
+    </view>
   </view>
-  <z-movie 
-    hidden="{{classic.type != 100}}" 
-    img="{{classic.image}}" 
+  <z-movie
+    hidden="{{classic.type != 100}}"
+    img="{{classic.image}}"
     content="{{classic.content}}"/>
-  <z-music 
-    wx:if="{{classic.type == 200}}" 
+  <z-music
+    wx:if="{{classic.type == 200}}"
     img="{{classic.image}}"
     url="{{classic.url}}"
     title="{{classic.title}}"
     content="{{classic.content}}"/>
-  <z-essay 
-    hidden="{{classic.type != 300}}" 
-    img="{{classic.image}}" 
+  <z-essay
+    hidden="{{classic.type != 300}}"
+    img="{{classic.image}}"
     content="{{classic.content}}"/>
 
-  <z-navi 
-    bind:next="onNext" 
-    bind:prev="onPrev" 
-    title="{{classic.title}}" 
-    has-left="{{hasLeft}}" 
+  <z-navi
+    bind:next="onNext"
+    bind:prev="onPrev"
+    title="{{classic.title}}"
+    has-left="{{hasLeft}}"
     has-right="{{hasRight}}"/>
 </view>

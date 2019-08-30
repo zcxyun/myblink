@@ -5,6 +5,9 @@
       <text class="tip">输入短评</text>
     </view>
     <z-like class="like" like-status="{{likeStatus}}" like-count="{{favNums}}" read-only="{{readOnly}}" bind:like="onLike" />
+    <z-image-button open-type="share">
+      <image src="../../images/icon/share.png" slot="img" class="share-button" />
+    </z-image-button>
   </view>
   <view class="post-container" hidden="{{!posting}}">
     <view class="header">

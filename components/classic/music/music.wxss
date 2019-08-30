@@ -3,6 +3,7 @@
 .img {
   width: 500rpx;
   height: 500rpx;
+  border-radius: 50%;
 }
 
 .play-img {

@@ -5,6 +5,7 @@
     "z-movie": "/components/classic/movie/movie",
     "z-essay": "/components/classic/essay/essay",
     "z-music": "/components/classic/music/music",
-    "z-navi": "/components/navi/navi"
+    "z-navi": "/components/navi/navi",
+    "z-image-button": "/components/image-button/image-button"
   }
 }

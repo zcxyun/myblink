@@ -8,14 +8,14 @@
 
 .img {
   width: 100%;
-  
+
 }
 
 .tag {
   width: 50rpx;
   height: 150rpx;
   position: absolute;
-  top: 500rpx;
+  top: 520rpx;
   left: 50rpx;
 }
 

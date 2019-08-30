@@ -3,6 +3,7 @@
   "usingComponents": {
     "z-like": "/components/like/like",
     "z-tags": "/components/tags/tags",
-    "z-mask": "/components/mask/mask"
+    "z-mask": "/components/mask/mask",
+    "z-image-button": "/components/image-button/image-button"
   }
 }

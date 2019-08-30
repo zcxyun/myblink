@@ -2,5 +2,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10rpx;
+  padding: 0 10rpx;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.header-buttons > z-like {
+  margin-right: 30rpx;
+}
+
+.share-button {
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 20rpx;
+  margin-top: 30rpx;
 }
