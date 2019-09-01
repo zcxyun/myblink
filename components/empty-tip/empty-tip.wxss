@@ -1,0 +1,7 @@
+.empty-tip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 750rpx;
+  height: 300rpx;
+}

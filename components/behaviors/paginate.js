@@ -38,13 +38,18 @@ export default Behavior({
     _hasMore() {
       return this._getCurrentStart() < this.data.total
     },
-    noMoreData() {
+    _noMoreData() {
       this.setData({
         isEnd: true
       })
     },
     _getCurrentStart() {
       return this.data.dataArray.length
+    },
+    _setNoResult(noResult) {
+      this.setData({
+        noResult
+      })
     }
   }
 })

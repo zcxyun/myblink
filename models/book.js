@@ -36,4 +36,10 @@ export default class Book extends Http {
       url: `book/search?start=${start}&count=${count}&summary=${summary}&q=${q}`
     })
   }
+
+  getMyFavorCount() {
+    return this.request({
+      url: 'book/favor/count'
+    })
+  }
 }

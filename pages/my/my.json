@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "z-image-button": "/components/image-button/image-button",
+    "z-previews": "/components/previews/previews",
+    "z-loading": "/components/loading/loading",
+    "z-end-tip": "/components/end-tip/end-tip",
+    "z-empty-tip": "/components/empty-tip/empty-tip"
+  }
 }

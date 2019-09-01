@@ -37,9 +37,9 @@
     <view class="loading-more">
       <z-loading wx:if="{{loadingMore}}" />
     </view>
-    <view class="end-tip" wx:if="{{isEnd}}">我也是有底线的~~</view>
+    <z-end-tip wx:if="{{isEnd}}" />
   </view>
 
   <z-loading class="loading-search" wx:if="{{loadingSearch}}" />
-  <view class="empty-tip" wx:if="{{noResult}}">暂无相关书籍~~</view>
+  <z-empty-tip wx:if="{{noResult}}" />
 </view>

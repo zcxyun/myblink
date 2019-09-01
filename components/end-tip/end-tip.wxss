@@ -1,0 +1,11 @@
+.end-tip {
+  width: 750rpx;
+  height: 100rpx;
+  font-size: 30rpx;
+  color: #999;
+  background: #f2f2f2;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

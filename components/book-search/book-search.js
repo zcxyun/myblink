@@ -41,7 +41,7 @@ Component({
         this._lock(false)
         this._setMoreData(books.books)
       } else {
-        this.noMoreData()
+        this._noMoreData()
       }
     }
   },

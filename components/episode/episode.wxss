@@ -9,18 +9,20 @@
 }
 
 .plain {
-  font-size: 60rpx;
+  font-size: 40rpx;
+  line-height: 40rpx;
   font-weight: 500;
 }
 
 .index {
-  font-size: 40rpx;
-  line-height: 40rpx;
+  font-size: 60rpx;
+  line-height: 60rpx;
+  font-weight: 700;
 }
 
 .line {
   border-left: 1px solid #000;
-  height: 45rpx;  
+  height: 45rpx;
 }
 
 .date-container {

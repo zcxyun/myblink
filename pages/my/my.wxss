@@ -1,1 +1,83 @@
-/* pages/my/my.wxss */
+
+.my-container {
+  background: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.my-bg {
+  width: 100%;
+}
+
+.avatar-box {
+  position: absolute;
+  top: 200rpx;
+  left: 334rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.avatar-text {
+  font-size: 30rpx;
+}
+
+.option-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.option-text {
+  font-size: 25rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+.about-position {
+  position: absolute;
+  top: 360rpx;
+  left: 100rpx;
+}
+
+.about-img {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.like-position {
+  position: absolute;
+  top: 360rpx;
+  right: 100rpx;
+}
+
+.like-nums {
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.my-favor-title {
+  text-align: center;
+  padding: 10rpx;
+}
+
+.my-favor-title > image{
+  width: 97rpx;
+  height: 42rpx;
+}
+
+.empty-tip {
+  height: 200rpx;
+  width: 100%;
+  font-size: 40rpx;
+  font-weight: 500;
+  color: #999;
+}
+

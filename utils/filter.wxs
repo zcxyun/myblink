@@ -19,8 +19,22 @@ var highlight = function(index) {
   }
   return ''
 }
+
+var classicType = function(typeNum) {
+  if (typeNum == 100) {
+    return '电影'
+  } else if (typeNum == 200) {
+    return '音乐'
+  } else if (typeNum == 300) {
+    return '句子'
+  } else {
+    return ''
+  }
+}
+
 module.exports = {
   format: format,
   limit: limit,
-  highlight: highlight
+  highlight: highlight,
+  classicType: classicType
 }

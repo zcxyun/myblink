@@ -1,0 +1,12 @@
+<view class="preview-container">
+  <view class="header">
+    <z-tag comment="{{category}}" />
+    <z-like
+      like-status="{{likeStatus}}"
+      like-count="{{likeCount}}"
+      read-only="{{readOnly}}"
+    />
+  </view>
+  <image class="{{category=='音乐'?'img-circle':'img-rectangle'}}" src="{{image}}"/>
+  <text class="summary">{{summary}}</text>
+</view>

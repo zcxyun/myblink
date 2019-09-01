@@ -11,8 +11,8 @@ export default class ClassicModel extends Http {
     return res
   }
   async getClassic(curIndex, behavior) {
-    let index = behavior == 'next' ? curIndex+1 : 
-                    (behavior == 'previous' ? curIndex-1 : curIndex)
+    let index = behavior == 'next' ? curIndex + 1 :
+      (behavior == 'previous' ? curIndex - 1 : curIndex)
     const classic = this.getClassicFromStorage(this.makeClassicKey(index))
     if (classic) {
       return classic
@@ -49,5 +49,20 @@ export default class ClassicModel extends Http {
   }
   makeClassicKey(index) {
     return 'classic-' + index
+  }
+
+  getMyFavor(start = 1, count = 4) {
+    return this.request({
+      url: `classic/favor`,
+      data: {
+        start,
+        count
+      }
+    })
+  }
+  getClassicByIdAndType(id, type) {
+    return this.request({
+      url: `classic/${type}/${id}`
+    })
   }
 }

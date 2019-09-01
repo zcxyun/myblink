@@ -10,7 +10,7 @@
   width: 150rpx;
   height: 150rpx;
   position: absolute;
-  top: 256rpx;
+  top: 280rpx;
 }
 
 .rotation {

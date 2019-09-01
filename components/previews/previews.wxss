@@ -1,0 +1,9 @@
+.my-previews {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.my-previews z-preview {
+  margin-left: 37rpx;
+  margin-bottom: 37rpx;
+}

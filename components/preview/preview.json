@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "z-tag": "/components/tag/tag",
+    "z-like": "/components/like/like"
+  }
+}

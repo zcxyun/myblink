@@ -1,0 +1,16 @@
+<wxs src="../../utils/filter.wxs" module="utils"></wxs>
+<view class="my-previews">
+  <block wx:for="{{datas}}" wx:key="content">
+    <z-preview
+      category="{{utils.classicType(item.type)}}"
+      like-status="{{item.like_status}}"
+      like-count="{{item.fav_nums}}"
+      image="{{item.image}}"
+      summary="{{item.content}}"
+      read-only="{{true}}"
+      bind:tap="onPreview"
+      data-cid="{{item.id}}"
+      data-type="{{item.type}}"
+    ></z-preview>
+  </block>
+</view>

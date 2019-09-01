@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "z-classic": "/pages/classic/classic"
+  }
+}
