@@ -15,7 +15,7 @@ const formatNumber = n => {
 }
 
 const promisic = function (func) {
-  return function (...args) {
+  return function ({...args}={}) {
     return new Promise((resolve, reject) => {
       const params = Object.assign(args, {
         success(res) {

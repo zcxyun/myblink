@@ -2,9 +2,14 @@ import {promisic} from "../../utils/util.js"
 import Book from "../../models/book.js"
 import Classic from "../../models/classic.js"
 import paginationBev from "../../components/behaviors/paginate.js"
+import Token from '../../models/token.js'
+import Member from '../../models/member.js'
 
 const bookModel = new Book()
 const classicModel = new Classic()
+const tokenModel = new Token()
+const memberModel = new Member()
+const app = getApp()
 
 Component({
   behaviors: [paginationBev],
@@ -21,7 +26,7 @@ Component({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      // this.userAuthorized()
+      this.userAuthorized()
       // this.getMyFavorCount()
       // this.getMyFavorClassices()
     },
@@ -30,20 +35,41 @@ Component({
       const res = await promisic(wx.getSetting)()
       if (res.authSetting['scope.userInfo']) {
         const {userInfo} = await promisic(wx.getUserInfo)()
+        const memberInfo = await memberModel.getInfo()
+        if (memberInfo instanceof Object) {
+          const isNotSame = this.equalInfo(memberInfo, userInfo)
+          if (isNotSame) {
+            memberModel.updateInfo(userInfo)
+          }
+        }
         this.setData({
           userInfo,
-          authorized: true
+          authorized: app.loginStatus
         })
       }
     },
 
-    onGetUserInfo(e) {
+    equalInfo(memberInfo, userInfo) {
+      const res = Object.keys(memberInfo).some(key => memberInfo[key] !== userInfo[key])
+      return res
+    },
+
+    async onGetUserInfo(e) {
       const userInfo = e.detail.userInfo
       if (userInfo) {
-        this.setData({
-          userInfo,
-          authorized: true
-        })
+        const {code} = await promisic(wx.login)()
+        if (code) {
+          const { accessToken, refreshToken } = await 
+                                tokenModel.getTokens({ code, ...userInfo })
+          if (accessToken && refreshToken) {
+            tokenModel.setTokensToStorage(accessToken, refreshToken)
+            app.loginStatus = true
+            this.setData({
+              userInfo,
+              authorized: app.loginStatus
+            })
+          }
+        }
       }
     },
 
@@ -80,10 +106,9 @@ Component({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-      this._initPaginate()
-      this.userAuthorized()
-      this.getMyFavorCount()
-      this.getMyFavorClassices()
+      // this._initPaginate()
+      // this.getMyFavorCount()
+      // this.getMyFavorClassices()
     },
 
     /**
