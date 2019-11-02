@@ -14,6 +14,9 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+/**
+ * 回调函数 promise 化
+ */
 const promisic = function (func) {
   return function ({...args}={}) {
     return new Promise((resolve, reject) => {
@@ -30,6 +33,25 @@ const promisic = function (func) {
   }
 }
 
+const accessTokenKey = 'accessToken'
+const refreshTokenKey = 'refreshToken'
+
+const setTokensToStorage = function(accessToken, refreshToken) {
+  wx.setStorageSync(accessTokenKey, `Bearer ${accessToken}`)
+  wx.setStorageSync(refreshTokenKey, `Bearer ${refreshToken}`)
+}
+
+const getAccessTokenFromStorage = function() {
+  return wx.getStorageSync(accessTokenKey) || null
+}
+const getRefreshTokenFromStorage = function() {
+  return wx.getStorageSync(refreshTokenKey) || null
+}
+
 export {
-  formatTime, promisic
+  formatTime, 
+  promisic, 
+  setTokensToStorage, 
+  getAccessTokenFromStorage, 
+  getRefreshTokenFromStorage,
 }

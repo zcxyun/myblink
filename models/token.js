@@ -1,21 +1,21 @@
 import Http from '../utils/http.js'
+import { setTokensToStorage } from '../utils/util.js'
 
 export default class Token extends Http {
-
-  accessTokenKey = 'accessToken'
-  refreshTokenKey = 'refreshToken'
-  
   async getTokens(data) {
-    const {accessToken, refreshToken} = await this.request({
+    const tokens = await this.request({
       url: 'token/get',
       method: 'POST',
-      data
+      data,
     })
-    this.setTokensToStorage(accessToken, refreshToken)
-    return {
-      accessToken,
-      refreshToken
+    if (tokens) {
+      setTokensToStorage(tokens.access_token, tokens.refresh_token)
+      return {
+        accessToken: tokens.access_token,
+        refreshToken: tokens.refresh_token,
+      }
     }
+    return null
   }
 
   // 放入Http.js 中防止循环导入
@@ -26,13 +26,4 @@ export default class Token extends Http {
   //   wx.setStorageSync(this.accessTokenKey, accessToken)
   //   return accessToken
   // }
-
-  setTokensToStorage(accessToken, refreshToken) {
-    wx.setStorageSync(this.accessTokenKey, `Bearer ${accessToken}`)
-    wx.setStorageSync(this.refreshTokenKey, `Bearer ${refreshToken}`)
-  }
-
-  getAccessTokenFromStorage() {
-    return wx.getStorageSync(this.accessTokenKey) || null
-  }
 }

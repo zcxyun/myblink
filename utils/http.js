@@ -1,32 +1,34 @@
 import {config} from '../config.js'
-// import Token from '../models/token.js'
 import {promisic} from './util.js'
-
-const app = getApp()
-// const token = new Token()
+import { 
+  setTokensToStorage, 
+  getAccessTokenFromStorage, 
+  getRefreshTokenFromStorage,
+} from '../utils/util.js'
 
 export default class Http {
-  
   async request({url, method='GET', data={}, refetch=true}) {
     const that = this
+    const header = this.getHeader(url)
     const curl = config.api_base_url + url
-    const reqConfig = this.getReqConfig(curl, method, data)
+    const reqOriginConfig = { url, method, data, header }
+    const reqConfig = { url:curl, method, data, header }
     const res = await promisic(wx.request)(reqConfig).catch(err => {
       that.showToast('对不起,出现了一个错误')
     })
     if (res) {
-      return await this.dealRes(res)
+      return await this.dealRes(res, reqOriginConfig, refetch)
     }
   }
 
-  async dealRes(res) {
+  async dealRes(res, reqOriginConfig, refetch) {
     const statusCode = res.statusCode.toString()
     if (statusCode.startsWith('2')) {
       return res.data
     } else {
+      console.log(res.data)
       let { error_code, msg } = res.data
       const errMsg = this.getErrMsg(msg)
-      console.log(errMsg)
       // 10100 refresh token 获取失败 10000 认证失败
       if (error_code === 10100 || error_code === 10000) {
         // 需要重新登录
@@ -38,11 +40,10 @@ export default class Http {
           return
         }
         // 用refreshToken重获accessToken并再次发起请求, refetch=false只再请求一次
-        const accessToken = await this.refreshToken()
-        if (accessToken) {
-          return await this.request({ ...reqConfig, refetch: false })
+        const res = await this.refreshToken()
+        if (res) {
+          return await this.request({ ...reqOriginConfig, refetch: false })
         }
-        return
       }
       this.showToast(errMsg)
     }
@@ -60,15 +61,17 @@ export default class Http {
         }
       }
     })
-    app.loginStatus = false
   }
 
   async refreshToken() {
-    const accessToken = await this.request({
+    const tokens = await this.request({
       url: 'token/refresh'
     })
-    wx.setStorageSync(this.accessTokenKey, accessToken)
-    return accessToken
+    if (tokens) {
+      setTokensToStorage(tokens.access_token, tokens.refresh_token)
+      return true
+    }
+    return false
   }
 
   getErrMsg(msg) {
@@ -83,27 +86,22 @@ export default class Http {
     return errMsg
   }
 
-  getReqConfig(url, method, data) {
-    const headers = this.getHeaders(url)
-    return { url, method, data, headers }
-  }
-
-  getHeaders(url) {
-    const headers = {
+  getHeader(url) {
+    const header = {
       'content-type': 'application/json'
     }
-    if (url === 'v1/token/refresh') {
-      const refreshToken = wx.getStorageSync('refreshToken')
+    if (url === 'token/refresh') {
+      const refreshToken = getRefreshTokenFromStorage()
       if (refreshToken) {
-        headers.Authorization = refreshToken
+        header.Authorization = refreshToken
       }
     } else {
-      const accessToken = wx.getStorageSync('accessToken')
+      const accessToken = getAccessTokenFromStorage()
       if (accessToken) {
-        headers.Authorization = accessToken
+        header.Authorization = accessToken
       }
     }
-    return headers
+    return header
   }
 
   showToast(content) {

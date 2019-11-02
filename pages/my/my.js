@@ -9,7 +9,6 @@ const bookModel = new Book()
 const classicModel = new Classic()
 const tokenModel = new Token()
 const memberModel = new Member()
-const app = getApp()
 
 Component({
   behaviors: [paginationBev],
@@ -34,17 +33,21 @@ Component({
     async userAuthorized() {
       const res = await promisic(wx.getSetting)()
       if (res.authSetting['scope.userInfo']) {
-        const {userInfo} = await promisic(wx.getUserInfo)()
+        let loginStatus = false
+        let {userInfo} = await promisic(wx.getUserInfo)()
         const memberInfo = await memberModel.getInfo()
         if (memberInfo instanceof Object) {
           const isNotSame = this.equalInfo(memberInfo, userInfo)
           if (isNotSame) {
-            memberModel.updateInfo(userInfo)
+            await memberModel.updateInfo(userInfo)
           }
+          loginStatus = true
+        } else {
+          userInfo = {}
         }
         this.setData({
           userInfo,
-          authorized: app.loginStatus
+          authorized: loginStatus
         })
       }
     },
@@ -59,14 +62,11 @@ Component({
       if (userInfo) {
         const {code} = await promisic(wx.login)()
         if (code) {
-          const { accessToken, refreshToken } = await 
-                                tokenModel.getTokens({ code, ...userInfo })
-          if (accessToken && refreshToken) {
-            tokenModel.setTokensToStorage(accessToken, refreshToken)
-            app.loginStatus = true
+          const res = await tokenModel.getTokens({ code, ...userInfo })
+          if (res) {
             this.setData({
               userInfo,
-              authorized: app.loginStatus
+              authorized: true
             })
           }
         }
