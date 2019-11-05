@@ -6,9 +6,12 @@ export default class ClassicModel extends Http {
     const res = await this.request({
       url: 'classic/latest'
     })
-    this.setMaxIndex(res.index)
-    this.setClassicToStorage(this.makeClassicKey(res.index), res)
-    return res
+    if (res) {
+      this.setMaxIndex(res.index)
+      this.setClassicToStorage(this.makeClassicKey(res.index), res)
+      return res
+    }
+    return null
   }
   async getClassic(curIndex, behavior) {
     let index = behavior == 'next' ? curIndex + 1 :
@@ -20,8 +23,11 @@ export default class ClassicModel extends Http {
     const res = await this.request({
       url: `classic/${curIndex}/${behavior}`
     })
-    this.setClassicToStorage(this.makeClassicKey(res.index), res)
-    return res
+    if (res) {
+      this.setClassicToStorage(this.makeClassicKey(res.index), res)
+      return res
+    }
+    return null
   }
   setMaxIndex(maxIndexValue) {
     const maxIndex = this.getMaxIndex(this.maxIndexKey)
@@ -51,7 +57,7 @@ export default class ClassicModel extends Http {
     return 'classic-' + index
   }
 
-  getMyFavor(start = 1, count = 4) {
+  getMyFavor(start = 0, count = 4) {
     return this.request({
       url: `classic/favor`,
       data: {

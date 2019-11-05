@@ -1,5 +1,6 @@
 import ClassicModel from '../../models/classic.js'
 import LikeModel from '../../models/like.js'
+import {getLoginStatusOfStorage} from '../../utils/util.js'
 
 const classicModel = new ClassicModel()
 const likeModel = new LikeModel()
@@ -18,12 +19,15 @@ Component({
     hasLeft: false,
     hasRight: false,
     likeStatus: false,
-    likeCount: 0
+    likeCount: 0,
+    locked: false,
   },
 
   lifetimes: {
     attached() {
-      this.loadClassic()
+      if (!this._isLatest()) {
+        this.loadClassic()
+      }
     }
   },
 
@@ -32,33 +36,35 @@ Component({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      this.loadClassic()
+      // this.loadClassic()
+    },
+    _isLatest() {
+      return !this.data.cid
     },
 
     async loadClassic() {
-      if(!this.data.cid) {
-        const latestClassic = await classicModel.getLatest()
-        this.setClassic(latestClassic, true)
+      let classic = null
+      if (this._isLatest()) {
+        classic = await classicModel.getLatest()
       } else {
-        const classic = await classicModel.getClassicByIdAndType(
+        classic = await classicModel.getClassicByIdAndType(
           this.data.cid, this.data.type
         )
-        this.setClassic(classic, false)
       }
+      await this.setClassic(classic)
     },
 
-    async setClassic(classic, islatest) {
-      if (islatest) {
-        var [likeStatus, likeCount] = [classic.like_status, classic.fav_nums]
-      } else {
-        var {like_status:likeStatus, fav_nums:likeCount} = await likeModel.getFavor(classic.type, classic.id)
+    async setClassic(classic) {
+      let likeStatus = false, likeCount = 0
+      if (getLoginStatusOfStorage() === true) {
+        ({like_status:likeStatus=false, fav_nums:likeCount=0} = await likeModel.getFavor(classic.type, classic.id))
       }
       this.setData({
         classic,
         hasLeft: classicModel.hasNext(classic.index),
         hasRight: classicModel.hasPrev(classic.index),
         likeStatus,
-        likeCount
+        likeCount,
       })
     },
 
@@ -77,12 +83,13 @@ Component({
     async getClassic(behavior) {
       const index = this.data.classic.index
       const classic = await classicModel.getClassic(index, behavior)
-      this.setClassic(classic, false)
+      this.setClassic(classic)
     },
 
     onLike(e) {
       likeModel.like(this.data.classic.id, this.data.classic.type, e.detail.isLike)
     },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -94,7 +101,9 @@ Component({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+      if (this._isLatest()) {
+        this.loadClassic()
+      }
     },
 
     /**

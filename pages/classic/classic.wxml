@@ -11,19 +11,20 @@
   <z-movie
     hidden="{{classic.type != 100}}"
     img="{{classic.image}}"
-    content="{{classic.content}}"/>
+    content="{{classic.summary}}"/>
   <z-music
     wx:if="{{classic.type == 200}}"
     img="{{classic.image}}"
-    url="{{classic.url}}"
+    url="{{classic.voice}}"
     title="{{classic.title}}"
-    content="{{classic.content}}"/>
+    content="{{classic.summary}}"/>
   <z-essay
     hidden="{{classic.type != 300}}"
     img="{{classic.image}}"
-    content="{{classic.content}}"/>
+    content="{{classic.summary}}"/>
 
   <z-navi
+    wx:if="{{!cid}}"
     bind:next="onNext"
     bind:prev="onPrev"
     title="{{classic.title}}"

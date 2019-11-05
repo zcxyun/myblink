@@ -1,1 +1,1 @@
-  <view class="empty-tip">暂无相关书籍~~</view>
+  <view class="empty-tip">{{content}}</view>

@@ -5,6 +5,7 @@
       like-status="{{likeStatus}}"
       like-count="{{likeCount}}"
       read-only="{{readOnly}}"
+      bind:like="onLike"
     />
   </view>
   <image class="{{category=='音乐'?'img-circle':'img-rectangle'}}" src="{{image}}"/>

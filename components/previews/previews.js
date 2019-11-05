@@ -21,6 +21,11 @@ Component({
     onPreview(e) {
       const { cid, type } = e.currentTarget.dataset
       this.triggerEvent('click', {cid,type})
+    },
+    onLike(e) {
+      const { isLike } = e.detail
+      const { cid, type } = e.currentTarget.dataset
+      this.triggerEvent('like', { isLike, cid, type })
     }
   }
 })

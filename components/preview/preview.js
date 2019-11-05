@@ -23,6 +23,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onLike(e) {
+      const { isLike } = e.detail
+      this.triggerEvent('like', {isLike})
+    }
   }
 })

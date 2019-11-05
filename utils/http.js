@@ -1,8 +1,8 @@
 import {config} from '../config.js'
 import {promisic} from './util.js'
-import { 
-  setTokensToStorage, 
-  getAccessTokenFromStorage, 
+import {
+  setTokensToStorage,
+  getAccessTokenFromStorage,
   getRefreshTokenFromStorage,
 } from '../utils/util.js'
 
@@ -24,6 +24,9 @@ export default class Http {
   async dealRes(res, reqOriginConfig, refetch) {
     const statusCode = res.statusCode.toString()
     if (statusCode.startsWith('2')) {
+      if (statusCode === '201') {
+        this.showToast(res.data.msg)
+      }
       return res.data
     } else {
       console.log(res.data)
@@ -79,7 +82,7 @@ export default class Http {
     if (msg instanceof Object) {
       Object.keys(msg).forEach((value, index) => {
         if (index === 0) {
-          errMsg = msg[value]
+          errMsg = msg[value][0]
         }
       })
     }

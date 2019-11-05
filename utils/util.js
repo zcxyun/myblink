@@ -35,6 +35,7 @@ const promisic = function (func) {
 
 const accessTokenKey = 'accessToken'
 const refreshTokenKey = 'refreshToken'
+const loginStatusKey = 'loginStatus'
 
 const setTokensToStorage = function(accessToken, refreshToken) {
   wx.setStorageSync(accessTokenKey, `Bearer ${accessToken}`)
@@ -48,10 +49,20 @@ const getRefreshTokenFromStorage = function() {
   return wx.getStorageSync(refreshTokenKey) || null
 }
 
+const setLoginStatusToStorage = function(status) {
+  wx.setStorageSync(loginStatusKey, status)
+}
+
+const getLoginStatusOfStorage = function() {
+  return wx.getStorageSync(loginStatusKey) || false
+}
+
 export {
-  formatTime, 
-  promisic, 
-  setTokensToStorage, 
-  getAccessTokenFromStorage, 
+  formatTime,
+  promisic,
+  setTokensToStorage,
+  getAccessTokenFromStorage,
   getRefreshTokenFromStorage,
+  setLoginStatusToStorage,
+  getLoginStatusOfStorage,
 }

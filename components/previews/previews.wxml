@@ -2,13 +2,15 @@
 <view class="my-previews">
   <block wx:for="{{datas}}" wx:key="content">
     <z-preview
+      class="my-preview"
       category="{{utils.classicType(item.type)}}"
       like-status="{{item.like_status}}"
       like-count="{{item.fav_nums}}"
       image="{{item.image}}"
-      summary="{{item.content}}"
-      read-only="{{true}}"
+      summary="{{item.summary}}"
+      read-only="{{false}}"
       bind:tap="onPreview"
+      bind:like="onLike"
       data-cid="{{item.id}}"
       data-type="{{item.type}}"
     ></z-preview>

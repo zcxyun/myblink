@@ -19,7 +19,7 @@
 }
 
 .title {
-  font-size: 40rpx;
+  font-size: 30rpx;
   margin-top: 10rpx;
   font-weight: 600;
   color: #2f2f2f;

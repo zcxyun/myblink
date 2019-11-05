@@ -35,11 +35,11 @@ Component({
       if (this._hasMore()) {
         this._lock(true)
         const books = await bookModel.search(
-          this.data.searchKeys, this._getCurrentStart()
-        ).catch(e => this._lock(false))
-
+          this.data.searchKeys, this._getCurrentStart())
+        if (books && books.models) {
+          this._setMoreData(books.models)
+        }
         this._lock(false)
-        this._setMoreData(books.books)
       } else {
         this._noMoreData()
       }
@@ -51,7 +51,7 @@ Component({
       const hotKeys = await keywordModel.getHotKeys()
       const historyKeys = keywordModel.getHistoryKeys()
       this.setData({
-        hotKeys: hotKeys.hot,
+        hotKeys,
         historyKeys
       })
     }
@@ -77,11 +77,14 @@ Component({
       this._searching(true)
       const text = e.detail.value || e.detail.text
       this._setInputValue(text)
-      this._addToHistory(text)
       const books = await bookModel.search(text)
-      this._setTotal(books.total)
+      if (books) {
+        this._addToHistory(text)
+        console.log(this.data.loadingSearch)
+        this._setTotal(books.total)
+        this._setMoreData(books.models)
+      }
       this._showLoadingSearch(false)
-      this._setMoreData(books.books)
     },
     onInput(e) {
       if (e.detail.value.length == 0) {

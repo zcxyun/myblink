@@ -24,9 +24,14 @@
     <image src="../../images/my/like.png" />
   </view>
 
-  <z-empty-tip wx:if="{{noResult}}" />
-  <z-previews datas="{{dataArray}}" bind:click="onPreview" wx:if="{{!noResult}}"/>
-
+  <z-empty-tip wx:if="{{noResult}}" content="{{emptyTip}}" />
+  <z-previews
+    datas="{{dataArray}}"
+    bind:click="onPreview"
+    wx:if="{{!noResult}}"
+    class="previews"
+    bind:like='onLike'
+  />
   <z-loading wx:if="{{loadingMore}}" />
   <z-end-tip wx:if="{{isEnd}}" />
 </view>

@@ -1,4 +1,6 @@
 // components/like/like.js
+import {getLoginStatusOfStorage} from '../../utils/util.js'
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -22,6 +24,20 @@ Component({
    */
   methods: {
     onLike(e) {
+      if (!getLoginStatusOfStorage()) {
+        wx.showModal({
+          title: '提示',
+          content: '请先登录',
+          success(res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/my/my'
+              })
+            }
+          }
+        })
+        return
+      }
       if (this.properties.readOnly) {
         return
       }

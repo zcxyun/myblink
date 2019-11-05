@@ -19,12 +19,22 @@ Component({
     isPlay: false
   },
 
+  observers: {
+    url() {
+      if (this.properties.url === mgr.src && !mgr.paused) {
+        this.playMusic(true)
+      } else {
+        this.playMusic(false)
+      }
+    }
+  },
+
   lifetimes: {
     attached () {
       this.monitorMusic()
-      if (this.properties.url === mgr.src && !mgr.paused) {
-        this.playMusic(true)
-      }
+      // if (this.properties.url === mgr.src && !mgr.paused) {
+      //   this.playMusic(true)
+      // }
     }
   },
   /**

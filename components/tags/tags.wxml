@@ -6,7 +6,7 @@
       tag-class="{{utils.highlight(index)}}"
       bind:click="onTag"
     >
-      <text slot="nums" class="tag-nums" wx:if="{{item.nums}}">{{'+' + item.nums}}</text>
+      <text slot="nums" class="tag-nums" wx:if="{{item.nums}}">{{item.nums>999?'999+':item.nums}}</text>
     </z-tag>
   </block>
 </view>

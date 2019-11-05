@@ -1,7 +1,7 @@
 var format = function(text) {
   if (text) {
-    var reg = getRegExp('\\\\n', 'g')
-    return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+    var reg = getRegExp('\\n', 'g')
+    return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
   }
 }
 

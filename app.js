@@ -1,4 +1,9 @@
 //app.js
 App({
-  onLaunch: function () {},
+  onLaunch: function () {
+
+  },
+  state: {
+    loginStatus: false,
+  }
 })
